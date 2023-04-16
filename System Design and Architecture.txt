@@ -1,0 +1,30 @@
+Fine Tuning
+The code seems to be using a dataset from the "reddit-suicide-dataset" to build a sentiment analysis model that can predict whether a given post is related to suicide or not. The sentiment labels are encoded as 0 and 1, where 0 represents "Not Suicide" and 1 represents "Suicide". The model is built using the BERT pre-trained transformer model, which is fine-tuned on the given dataset.
+
+The code performs several preprocessing steps on the dataset, including converting all text to lowercase, removing emails and HTML tags, and removing special characters and accented characters. The text is then tokenized using the BERT tokenizer and converted into input sequences that can be fed to the BERT model.
+
+The model architecture consists of the BERT model followed by a GlobalMaxPool1D layer, two dense layers with 128 and 32 units respectively, a dropout layer with a rate of 0.1, and a final dense layer with two units and a sigmoid activation function. The model is compiled using the Adam optimizer, CategoricalCrossentropy loss function, and CategoricalAccuracy metric. The model is trained for 5 epochs with a batch size of 10.
+
+Based on this code, the positive points of the system are that it uses a state-of-the-art pre-trained transformer model and is fine-tuned on a large dataset for sentiment analysis. The preprocessing steps used in the code can help improve the quality of the input data. The system can also predict the sentiment of a given post with good accuracy.
+
+The negative points of the system may be that it is only able to predict two classes of sentiment (suicide vs. non-suicide) and may not be able to generalize well to other types of sentiment analysis tasks. The model may also require a large amount of training data and computational resources to fine-tune the pre-trained BERT model. Additionally, the model may require further evaluation to determine its performance on unseen data and its ability to handle real-world use cases.
+
+Flask Application
+
+This is a Python Flask web application that predicts whether a given text contains references to self-harm or not. The model used for prediction is a deep learning model based on the BERT architecture, trained on a dataset of texts with and without references to self-harm.
+
+The application uses the Flask web framework for routing and rendering HTML templates, the transformers library for loading and using the BERT model, and the text_hammer library for text preprocessing.
+
+When a user submits a text input through the web interface, the application pre-processes the text input and uses the BERT model to predict whether the text contains references to self-harm or not. The predicted result is then returned to the user as a response.
+
+Gradio UI
+
+The model is loaded from a pre-trained checkpoint, and a Gradio interface is created for using the model through a web app.
+
+The code imports several libraries such as text_hammer, numpy, gradio, transformers, and tensorflow. The text_hammer library is used for preprocessing the text data. The numpy library is used for numerical operations, and the gradio library is used for creating the web app interface. The transformers library is used to import the pre-trained BERT model and tokenizer, and the tensorflow library is used to build the neural network model.
+
+The pre-trained BERT model is loaded from the bert-base-cased checkpoint using the TFBertModel.from_pretrained() method. The tokenizer is also loaded from the same checkpoint using the AutoTokenizer.from_pretrained() method. The neural network model is built using the loaded BERT model, and the weights of the trained model are loaded from a saved file using the model_load() method.
+
+The text_preprocessing() method is used for text cleaning and preprocessing. It converts the text to lowercase, expands contractions, removes emails and HTML tags, removes special characters and accents. The predict_sentiment() method preprocesses the input text using text_preprocessing() method, tokenizes the text using the BERT tokenizer, and feeds it to the loaded neural network model to get the sentiment prediction.
+
+Finally, the gr.Interface() method creates the web app interface using Gradio. The interface takes a single-line text input, which is used to predict whether the input text contains references to self-harm or not.
